@@ -42,28 +42,68 @@ function playRound(playerSelection, computerSelection) {
      * Return the results of the comparison
      */
 
-    let winner;
     playerSelection = playerSelection.toUpperCase();
     
     if (playerSelection === computerSelection) {
-        return "It's a tie!"
+        return "TIE"
     }
     
     if (playerSelection === "ROCK") {
-        return ((computerSelection === "SCISSORS") ? "You win!" : "You lose!");
+        return ((computerSelection === "SCISSORS") ? "PLAYER" : "COMPUTER");
     }
 
     if (playerSelection === "PAPER") {
-        return ((computerSelection === "ROCK") ? "You win!" : "You lose!")
+        return ((computerSelection === "ROCK") ? "PLAYER" : "COMPUTER")
     }
 
     if (playerSelection === "SCISSORS") {
-        return ((computerSelection === "PAPER") ? "You win!" : "You lose!")
+        return ((computerSelection === "PAPER") ? "PLAYER" : "COMPUTER")
     }
 }
 
-const playerSelection = prompt("Rock, paper, scissors, shoot!");
-const computerSelection = computerPlay();
-console.log(playerSelection)
-console.log(computerSelection)
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    /**
+     * Play five rounds of RPS, keeping track of the winner and loser of each round
+     * as well as the overall winner.
+     * 
+     * BEGIN PSEDOCODE:
+     * When the game begins, play a round
+     * Notify what each player chose
+     * Notify win/loss
+     * Increment score counter for appropriate player
+     * After five rounds, declare a winner
+     */
+
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt("Rock, paper, scissors, shoot!");
+        console.log(`You chose ${playerSelection.toUpperCase()}`);
+        const computerSelection = computerPlay();
+        console.log(`Computer chose ${computerSelection}`);
+        let winner = playRound(playerSelection, computerSelection);
+        if (winner === "PLAYER") {
+            playerScore += 1;
+        } else if (winner === "COMPUTER") {
+            computerScore += 1;
+        } else {
+            playerScore += 1;
+            computerScore += 1;
+        }
+        console.log(`The winner is: ${winner}!`);
+    }
+
+    console.log("====================");
+    console.log(`Player score: ${playerScore}`);
+    console.log(`Computer score: ${computerScore}`);
+    if (playerScore > computerScore) {
+        console.log("PLAYER wins!");
+    } else if (computerScore > playerScore) {
+        console,log("COMPUTER wins!");
+    } else {
+        console.log(" It's a TIE!")
+    }
+}
+
+game();
