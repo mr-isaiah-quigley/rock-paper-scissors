@@ -7,6 +7,7 @@ Completed as part of The Odin Project
 // Variables
 let humanScore = 0;
 let computerScore = 0;
+let tieScore = 0;
 
 // Get the computer's choice
 function getComputerChoice() {
@@ -44,13 +45,14 @@ function getHumanChoice() {
 }
 
 // Play a round
-function playRound(humanChoice, computerChoice, humanScore, computerScore) {
+function playRound(humanChoice, computerChoice) {
 
     humanChoice = humanChoice.toLowerCase(); // Remove case sensitivity
     
     // Tie
     if (humanChoice === computerChoice) {
         console.log(`Tie!`);
+        tieScore += 1;
         return;
     }
 
@@ -80,6 +82,6 @@ function playGame() {
     }
 
     // show score
-    console.log(`Human: ${humanScore}\nComputer: ${computerScore}`);
+    console.log(`Human: ${humanScore}\nComputer: ${computerScore}\nTie: ${tieScore}`);
 }
 
