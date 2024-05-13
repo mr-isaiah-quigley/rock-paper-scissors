@@ -4,6 +4,9 @@ Copyright 2024 Isaiah Quigley
 Completed as part of The Odin Project
 */
 
+// Variables
+let humanScore = 0;
+let computerScore = 0;
 
 // Get the computer's choice
 function getComputerChoice() {
@@ -68,14 +71,15 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore) {
 
 // Play the game!
 function playGame() {
-    // Variables
-    let humanScore = 0;
-    let computerScore = 0;
 
+    // Play five rounds
     for (let i =0; i < 5; i++) {
         humanSelection = getHumanChoice();
         computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection, humanScore, computerScore);
+        playRound(humanSelection, computerSelection);
     }
+
+    // show score
+    console.log(`Human: ${humanScore}\nComputer: ${computerScore}`);
 }
 
