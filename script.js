@@ -74,7 +74,7 @@ function playRound(humanChoice, computerChoice) {
 // Play the game!
 function playGame() {
 
-    // Play five rounds
+    // Play a round
     humanSelection = getHumanChoice();
     computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
