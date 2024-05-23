@@ -52,20 +52,6 @@ function getComputerChoice() {
     return choice;
 }
 
-// Get the human's schoice
-function getHumanChoice() {
-    choice = prompt("Rock, Paper, or Scissors?");
-
-    if (!["rock", "paper", "scissors"].includes(choice.toLowerCase())) {
-        console.log(`Error!  Expected rock, paper, or scissors.  Received: ${choice}`);
-        getHumanChoice();
-    }
-
-    // Check computer choice
-    // console.log(`Human: ${choice}`);
-    return choice;
-}
-
 // Play a round
 function playRound(humanChoice, computerChoice) {
 
