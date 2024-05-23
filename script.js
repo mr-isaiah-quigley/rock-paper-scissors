@@ -55,39 +55,61 @@ function getComputerChoice() {
 // Play a round
 function playRound(humanChoice, computerChoice) {
 
-    humanChoice = humanChoice.toLowerCase(); // Remove case sensitivity
+    // Get the necessary elements from the DOM
+    const humanChoiceID = document.querySelector("#humanChoice");
+    const computerChoiceID = document.querySelector("#computerChoice");
+    const roundWinnerID = document.querySelector("#roundWinner");
+    const humanScoreID = document.querySelector("#humanScore");
+    const computerScoreID = document.querySelector("#computerScore");
+    const overallWinner = document.querySelector("#overallWinner");
+
+    // Reset DOM elements as needed
+    humanChoiceID.textContent = "Human Choice: ";
+    computerChoiceID.textContent = "Computer Choice: ";
+    roundWinnerID.textContent = "Round Winner: ";
     
     // Tie
     if (humanChoice === computerChoice) {
-        console.log(`Tie!`);
-        tieScore += 1;
+        humanChoiceID.textContent += humanChoice;
+        computerChoiceID.textContent += computerChoice;
+        roundWinnerID.textContent += "Tie!"
         return;
     }
 
     // Human wins
     else if (humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "scissors" && computerChoice === "paper" || humanChoice === "paper" && computerChoice === "rock") {
-        console.log(`Winner! ${humanChoice} beats ${computerChoice}!`);
+        humanChoiceID.textContent += humanChoice;
+        computerChoiceID.textContent += computerChoice;
+        roundWinnerID.textContent += "Human!";
         humanScore += 1;
+        humanScoreID.textContent = "Human Score: "
+        humanScoreID.textContent += humanScore;
+        computerScoreID.textContent = "Computer Score: "
+        computerScoreID.textContent += computerScore;
+        if (humanScore == 5) {
+            overallWinner.textContent = "Human player wins!!!\nRefresh the page to play again.";
+            let buttons = document.querySelectorAll("button");
+            buttons.forEach((button) => {button.disabled = true;});
+
+        }
         return;
     }
 
     // Computer wins
     else {
-        console.log(`You lose!  ${computerChoice} beats ${humanChoice}!`)
+        humanChoiceID.textContent += humanChoice;
+        computerChoiceID.textContent += computerChoice;
+        roundWinnerID.textContent += "Computer!";
         computerScore += 1;
+        humanScoreID.textContent = "Human Score: "
+        humanScoreID.textContent += humanScore;
+        computerScoreID.textContent = "Computer Score: "
+        computerScoreID.textContent += computerScore;
+        if (computerScore == 5) {
+            overallWinner.textContent = "Computer player wins!!!\nRefresh the page to play again.";
+            let buttons = document.querySelectorAll("button");
+            buttons.forEach((button) => {button.disabled = true;});
+        }
         return
     }
 }
-
-// Play the game!
-//function playGame() {
-
-    // Play a round
-
-    
-
-    // show score
-    //console.log(`Human: ${humanScore}\nComputer: ${computerScore}\nTie: ${tieScore}`);
-//}
-
-//playGame();
