@@ -7,7 +7,6 @@ Completed as part of The Odin Project
 // Variables
 let humanScore = 0;
 let computerScore = 0;
-let tieScore = 0;
 let humanSelection = "";
 let computerSelection = "";
 
@@ -70,46 +69,51 @@ function playRound(humanChoice, computerChoice) {
     
     // Tie
     if (humanChoice === computerChoice) {
-        humanChoiceID.textContent += humanChoice;
-        computerChoiceID.textContent += computerChoice;
+        displayChoice(humanChoiceID, computerChoiceID, humanChoice, computerChoice);
         roundWinnerID.textContent += "Tie!"
         return;
     }
 
     // Human wins
     else if (humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "scissors" && computerChoice === "paper" || humanChoice === "paper" && computerChoice === "rock") {
-        humanChoiceID.textContent += humanChoice;
-        computerChoiceID.textContent += computerChoice;
+        displayChoice(humanChoiceID, computerChoiceID, humanChoice, computerChoice);
         roundWinnerID.textContent += "Human!";
         humanScore += 1;
-        humanScoreID.textContent = "Human Score: "
-        humanScoreID.textContent += humanScore;
-        computerScoreID.textContent = "Computer Score: "
-        computerScoreID.textContent += computerScore;
-        if (humanScore == 5) {
-            overallWinner.textContent = "Human player wins!!!\nRefresh the page to play again.";
-            let buttons = document.querySelectorAll("button");
-            buttons.forEach((button) => {button.disabled = true;});
-
-        }
+        displayScores(humanScoreID, computerScoreID);
+        checkWinner();
         return;
     }
 
     // Computer wins
     else {
-        humanChoiceID.textContent += humanChoice;
-        computerChoiceID.textContent += computerChoice;
+        displayChoice(humanChoiceID, computerChoiceID, humanChoice, computerChoice);
         roundWinnerID.textContent += "Computer!";
         computerScore += 1;
-        humanScoreID.textContent = "Human Score: "
-        humanScoreID.textContent += humanScore;
-        computerScoreID.textContent = "Computer Score: "
-        computerScoreID.textContent += computerScore;
-        if (computerScore == 5) {
-            overallWinner.textContent = "Computer player wins!!!\nRefresh the page to play again.";
-            let buttons = document.querySelectorAll("button");
-            buttons.forEach((button) => {button.disabled = true;});
-        }
+        displayScores(humanScoreID, computerScoreID);
+        checkWinner();
         return
     }
+}
+
+function displayChoice(human, computer, humanChoice, computerChoice) {
+    human.textContent += humanChoice;
+    computer.textContent += computerChoice;
+}
+
+function displayScores(human, computer) {
+    human.textContent = "Human Score: "
+    human.textContent += humanScore;
+    computer.textContent = "Computer Score: "
+    computer.textContent += computerScore;
+    return;
+}
+
+function checkWinner() {
+    if (humanScore == 5 || computerScore == 5) {
+        let winner = (humanScore > computerScore) ? "Human" : "Computer"
+        overallWinner.textContent = `${winner} player wins!!!\nRefresh the page to play again.`;
+        let buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {button.disabled = true;});
+    }
+    return;
 }
