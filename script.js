@@ -8,6 +8,28 @@ Completed as part of The Odin Project
 let humanScore = 0;
 let computerScore = 0;
 let tieScore = 0;
+let humanSelection = "";
+let computerSelection = "";
+
+const rpsButtons = document.querySelector("#btns");
+
+rpsButtons.addEventListener("click", (event) => {
+    const target = event.target;
+
+    switch(target.id) {
+        case "rock":
+            humanSelection = "rock";
+            break;
+        case "paper":
+            humanSelection = "paper";
+            break;
+        case "scissors":
+            humanSelection = "scissors";
+            break;
+    }
+    computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+});
 
 // Get the computer's choice
 function getComputerChoice() {
@@ -72,15 +94,14 @@ function playRound(humanChoice, computerChoice) {
 }
 
 // Play the game!
-function playGame() {
+//function playGame() {
 
     // Play a round
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
+
     
 
     // show score
-    console.log(`Human: ${humanScore}\nComputer: ${computerScore}\nTie: ${tieScore}`);
-}
+    //console.log(`Human: ${humanScore}\nComputer: ${computerScore}\nTie: ${tieScore}`);
+//}
 
+//playGame();
