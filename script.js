@@ -75,11 +75,10 @@ function playRound(humanChoice, computerChoice) {
 function playGame() {
 
     // Play five rounds
-    for (let i =0; i < 5; i++) {
-        humanSelection = getHumanChoice();
-        computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    
 
     // show score
     console.log(`Human: ${humanScore}\nComputer: ${computerScore}\nTie: ${tieScore}`);
